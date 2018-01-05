@@ -1,10 +1,7 @@
 # StretchyHeaderViewController
 > View controller with a customizable stretchy header in swift.
 
-[![Swift Version][swift-image]][swift-url]
-[![License][license-image]][license-url]
-
-ViewController containing a UIScrollView/UITableView/UICollectionView with a stretchy header. The header has a nice parallax effect and the text fades away as the header reaches its minimum size. The header is customizable.
+UIViewController containing a UIScrollView/UITableView/UICollectionView with a stretchy header. The header has a nice parallax effect and the text fades away as the header reaches its minimum size. The header is customizable.
 
 ![](StretchyHeader.gif)
 
@@ -66,6 +63,12 @@ func scrollViewDidScroll(_ scrollView: UIScrollView) {
     stretchyHeaderViewController.updateHeaderView()
 }
 ```
+
+## TODO
+
+- Unit testing
+- Add option to get header image with an URL
+- Any suggestion...
 
 ## Meta
 
