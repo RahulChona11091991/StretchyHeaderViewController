@@ -94,14 +94,6 @@ class DemoViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func minHeightTextFieldEndEditing(_ sender: Any) {
-        
-    }
-    
-    @IBAction func maxHeightTextFieldEndEditing(_ sender: Any) {
-        
-    }
-    
     @IBAction func didTapTintButton(_ sender: Any) {
         let randomRed:CGFloat = CGFloat(drand48())
         let randomGreen:CGFloat = CGFloat(drand48())

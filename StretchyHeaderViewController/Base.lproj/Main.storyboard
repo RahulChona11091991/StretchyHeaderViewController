@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -67,10 +66,6 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                                <connections>
-                                                    <action selector="maxHeightTextFieldEndEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="o9S-yB-1fh"/>
-                                                    <action selector="minHeightTextFieldEndEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="0yQ-dM-BgQ"/>
-                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="300" borderStyle="roundedRect" placeholder="Maximum header height" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vgd-vU-oNv">
                                                 <rect key="frame" x="8" y="317" width="359" height="30"/>
@@ -80,10 +75,6 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                                <connections>
-                                                    <action selector="maxHeightTextFieldEndEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="O1U-vB-noS"/>
-                                                    <action selector="minHeightTextFieldEndEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="kqk-Ah-Vdx"/>
-                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHn-rv-fBA">
                                                 <rect key="frame" x="8" y="363" width="359" height="30"/>
