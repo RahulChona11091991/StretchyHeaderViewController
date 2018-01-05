@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		658EB4701FFEC6DE00C88906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EB46F1FFEC6DE00C88906 /* AppDelegate.swift */; };
-		658EB4721FFEC6DE00C88906 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EB4711FFEC6DE00C88906 /* ViewController.swift */; };
 		658EB4751FFEC6DE00C88906 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658EB4731FFEC6DE00C88906 /* Main.storyboard */; };
 		658EB4771FFEC6DE00C88906 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 658EB4761FFEC6DE00C88906 /* Assets.xcassets */; };
 		658EB47A1FFEC6DE00C88906 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658EB4781FFEC6DE00C88906 /* LaunchScreen.storyboard */; };
 		658EB4851FFEC6DE00C88906 /* StretchyHeaderViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EB4841FFEC6DE00C88906 /* StretchyHeaderViewControllerTests.swift */; };
 		658EB4901FFEC6DF00C88906 /* StretchyHeaderViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EB48F1FFEC6DF00C88906 /* StretchyHeaderViewControllerUITests.swift */; };
+		658EB49E1FFEC72600C88906 /* StretchyHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EB49D1FFEC72600C88906 /* StretchyHeaderViewController.swift */; };
+		658EB4A01FFEC7AE00C88906 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658EB49F1FFEC7AE00C88906 /* DemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,6 @@
 /* Begin PBXFileReference section */
 		658EB46C1FFEC6DE00C88906 /* StretchyHeaderViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StretchyHeaderViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		658EB46F1FFEC6DE00C88906 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		658EB4711FFEC6DE00C88906 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		658EB4741FFEC6DE00C88906 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		658EB4761FFEC6DE00C88906 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		658EB4791FFEC6DE00C88906 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +47,8 @@
 		658EB48B1FFEC6DF00C88906 /* StretchyHeaderViewControllerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StretchyHeaderViewControllerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		658EB48F1FFEC6DF00C88906 /* StretchyHeaderViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderViewControllerUITests.swift; sourceTree = "<group>"; };
 		658EB4911FFEC6DF00C88906 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		658EB49D1FFEC72600C88906 /* StretchyHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchyHeaderViewController.swift; sourceTree = "<group>"; };
+		658EB49F1FFEC7AE00C88906 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +99,13 @@
 		658EB46E1FFEC6DE00C88906 /* StretchyHeaderViewController */ = {
 			isa = PBXGroup;
 			children = (
+				658EB49D1FFEC72600C88906 /* StretchyHeaderViewController.swift */,
 				658EB46F1FFEC6DE00C88906 /* AppDelegate.swift */,
-				658EB4711FFEC6DE00C88906 /* ViewController.swift */,
 				658EB4731FFEC6DE00C88906 /* Main.storyboard */,
 				658EB4761FFEC6DE00C88906 /* Assets.xcassets */,
 				658EB4781FFEC6DE00C88906 /* LaunchScreen.storyboard */,
 				658EB47B1FFEC6DE00C88906 /* Info.plist */,
+				658EB49F1FFEC7AE00C88906 /* DemoViewController.swift */,
 			);
 			path = StretchyHeaderViewController;
 			sourceTree = "<group>";
@@ -259,8 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				658EB4721FFEC6DE00C88906 /* ViewController.swift in Sources */,
+				658EB4A01FFEC7AE00C88906 /* DemoViewController.swift in Sources */,
 				658EB4701FFEC6DE00C88906 /* AppDelegate.swift in Sources */,
+				658EB49E1FFEC72600C88906 /* StretchyHeaderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4HXZK4QW3Z;
 				INFOPLIST_FILE = StretchyHeaderViewController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ThirdBridge.StretchyHeaderViewController;
@@ -441,6 +446,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4HXZK4QW3Z;
 				INFOPLIST_FILE = StretchyHeaderViewController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ThirdBridge.StretchyHeaderViewController;
