@@ -21,7 +21,7 @@ class DemoViewController: UIViewController {
     @IBOutlet weak var changeTintColorButton: UIButton!
     @IBOutlet weak var showControllerButton: UIButton!
     
-    fileprivate var stretchyHeaderViewController = StretchyHeaderViewController()
+    fileprivate var stretchyHeaderViewController : StretchyHeaderViewController?
     
     fileprivate lazy var tableView: UITableView = {
         var tableView = UITableView()
@@ -38,7 +38,7 @@ class DemoViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DemoViewController.dismissKeyboard))
         scrollView.addGestureRecognizer(tap)
         
-        stretchyHeaderViewController.scrollView = tableView
+        
     }
     
     @objc func keyboardWillHide(noti: Notification) {
@@ -102,25 +102,29 @@ class DemoViewController: UIViewController {
     }
     
     @IBAction func didTapShowViewController(_ sender: Any) {
-        stretchyHeaderViewController.headerTitle = titleTextField.text ?? ""
-        stretchyHeaderViewController.headerSubtitle = subtitleTextField.text ?? ""
-        stretchyHeaderViewController.image = imageView.image
+        stretchyHeaderViewController = StretchyHeaderViewController()
+        stretchyHeaderViewController?.scrollView = tableView
+        stretchyHeaderViewController?.headerTitle = titleTextField.text ?? ""
+        stretchyHeaderViewController?.headerSubtitle = subtitleTextField.text ?? ""
+        stretchyHeaderViewController?.image = imageView.image
         
         if let minHeight = NumberFormatter().number(from: minHeightTextInput.text ?? "") {
-            stretchyHeaderViewController.minHeaderHeight = CGFloat(truncating: minHeight)
+            stretchyHeaderViewController?.minHeaderHeight = CGFloat(truncating: minHeight)
         } else {
-            stretchyHeaderViewController.minHeaderHeight = 0.0
+            stretchyHeaderViewController?.minHeaderHeight = 0.0
         }
         
         if let maxHeight = NumberFormatter().number(from: maxHeightTextInput.text ?? "") {
-            stretchyHeaderViewController.maxHeaderHeight = CGFloat(truncating: maxHeight)
+            stretchyHeaderViewController?.maxHeaderHeight = CGFloat(truncating: maxHeight)
         } else {
-            stretchyHeaderViewController.maxHeaderHeight = 0.0
+            stretchyHeaderViewController?.maxHeaderHeight = 0.0
         }
         
-        stretchyHeaderViewController.tintColor = changeTintColorButton.tintColor
+        stretchyHeaderViewController?.maxHeaderHeight = CGFloat(0.5 * self.view.frame.size.height)
         
-        self.present(stretchyHeaderViewController, animated: true, completion: nil)
+        stretchyHeaderViewController?.tintColor = changeTintColorButton.tintColor
+        stretchyHeaderViewController?.modalPresentationStyle = .overCurrentContext
+        self.present(stretchyHeaderViewController!, animated: true, completion: nil)
     }
 }
 
@@ -137,7 +141,7 @@ extension DemoViewController: UIImagePickerControllerDelegate, UINavigationContr
 
 extension DemoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return 40
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -147,6 +151,6 @@ extension DemoViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        stretchyHeaderViewController.updateHeaderView()
+        stretchyHeaderViewController?.updateHeaderView()
     }
 }

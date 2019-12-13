@@ -16,8 +16,15 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 class StretchyHeaderViewController: UIViewController {
+    
+    fileprivate var player: AVPlayer? {
+        didSet { player?.play() }
+    }
+    fileprivate var playerObserver: Any?
+        
     
     // MARK : - Attributes
     var headerTitle: String? {
@@ -34,7 +41,7 @@ class StretchyHeaderViewController: UIViewController {
     
     var image: UIImage? {
         didSet {
-            imageView.image = image
+//            imageView.image = image
         }
     }
     
@@ -43,7 +50,7 @@ class StretchyHeaderViewController: UIViewController {
             updateHeaderView()
         }
     }
-    
+
     var maxHeaderHeight: CGFloat = 300 {
         didSet {
             updateHeaderView()
@@ -111,16 +118,16 @@ class StretchyHeaderViewController: UIViewController {
         return (imageView.frame.height - minHeaderHeight)/(maxHeaderHeight - minHeaderHeight)
     }
     
-    var headerCollapsingAnimationDuration: Double = 1
-    var headerExpandingAnimationDuration: Double = 1
+    var headerCollapsingAnimationDuration: Double = 0
+    var headerExpandingAnimationDuration: Double = 0
     
     // Defining margin in this file in order to reuser the class in multiple projects
     fileprivate let margin: CGFloat = 10
     
     // MARK : - UI Elements
-    fileprivate lazy var imageView: UIImageView = {
-        var image = UIImageView()
-        image.contentMode = .scaleAspectFill
+    fileprivate lazy var imageView: VideoContainerView = {
+        var image = VideoContainerView()
+//        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         return image
     }()
@@ -157,8 +164,13 @@ class StretchyHeaderViewController: UIViewController {
     // MARK :  - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        maxHeaderHeight = CGFloat(0.5 * self.view.frame.size.height)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        player?.play()
+    }
     fileprivate func setupViews() {
         guard let scrollView = self.scrollView else {
             return
@@ -188,6 +200,10 @@ class StretchyHeaderViewController: UIViewController {
         titleLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: margin).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -margin).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: subtitleLabel.topAnchor, constant: -margin).isActive = true
+                
+        initializeVideoPlayerWithVideo()
+        player?.play()
+
     }
     
     func expandHeader() {
@@ -223,6 +239,60 @@ class StretchyHeaderViewController: UIViewController {
         
         titleLabel.alpha = progress
         subtitleLabel.alpha = progress
+        
+        
+//        player?.accessibilityFrame = CGRect(x: 0, y: 0, width: player?.currentItem?.presentationSize.width ?? 0.0, height: player?.currentItem?.presentationSize.height ?? 0.0)
+    }
+    
+    func initializeVideoPlayerWithVideo() {
+
+           let playerLayer = videoPlayerLayer()
+            playerLayer.backgroundColor = UIColor.gray.cgColor
+           playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+           playerLayer.frame = imageView.bounds
+        playerLayer.needsDisplayOnBoundsChange = true
+        playerLayer.masksToBounds = true
+           imageView.layer.insertSublayer(playerLayer, at: 0)
+        
+            imageView.playerLayer = playerLayer;
+       }
+       
+       func videoPlayerLayer() -> AVPlayerLayer {
+           let fileURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+        player = AVPlayer(url: fileURL!)
+           let resetPlayer = {
+            self.player?.seek(to: kCMTimeZero)
+            self.player?.play()
+           }
+           playerObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem, queue: nil) { notification in
+               resetPlayer()
+           }
+//           self.player = player
+           return AVPlayerLayer(player: player)
+       }
+       
+       deinit {
+           guard let observer = playerObserver else { return }
+           NotificationCenter.default.removeObserver(observer)
+       }
+}
+
+class VideoContainerView: UIView {
+  var playerLayer: CALayer?
+    override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
+        CALayer.perform(withDuration: 0.0) {
+            playerLayer?.frame = self.bounds
+        }
     }
 }
 
+extension CALayer
+{
+    class func perform(withDuration duration: Double, actions: () -> Void) {
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(duration)
+        actions()
+        CATransaction.commit()
+    }
+}
